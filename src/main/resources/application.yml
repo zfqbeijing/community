@@ -1,0 +1,51 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /community
+spring:
+  thymeleaf:
+    cache: false
+  datasource: # DataSourceProperties
+    driver-class-name: com.mysql.cj.jdbc.Driver #数据库的驱动
+    url: jdbc:mysql://127.0.0.1:3306/community?characterEncoding=utf-8&useSSL=false&serverTimezone=Hongkong # url和编码集的参数，不启用完全连接，服务器时区
+    username: root
+    password:
+    type: com.zaxxer.hikari.HikariDataSource # 连接池
+    hikari:
+      maximum-pool-size: 15 # 最大连接数量
+      minimum-idle: 5 # 最小空闲连接
+      idle-timeout: 30000 # 等待时间
+  mail:
+    host: smtp.sina.com
+    username: community_zfq@sina.com
+    password: 93b521f5f0cbe5b8
+    properties:
+      mail:
+        smtl:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  redis:
+    database: 11 # redis使用的库
+    host: 127.0.0.1 # redis 所在的主机名
+    port: 6379 # redis 使用的端口
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml # 指定mapper路径
+  type-aliases-package: com.nowcoder.community.entity # 实体类
+  configuration:
+    use-generated-keys: true # 启用自动生成主键
+    map-underscore-to-camel-case: true # 表示不区分大小写 下划线的命名方式和驼峰命名方式匹配
+#logging:
+#  level:
+#    com.itz.community: debug
+#  file: G:/ProgrammingSoftware/IDEA/Item/community.log
+
+#community
+community:
+  path:
+    domain: http://127.0.0.1:8080
+    upload: G:/ProgrammingSoftware/IDEA/Items/upload
